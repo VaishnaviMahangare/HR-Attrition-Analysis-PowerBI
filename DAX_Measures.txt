@@ -1,0 +1,32 @@
+Total Employee =
+COUNTROWS('hr_attrition employee_attrition')
+
+
+Employee Left =
+CALCULATE(
+    COUNTROWS('hr_attrition employee_attrition'),
+    'hr_attrition employee_attrition'[Attrition] = "Yes"
+)
+
+
+Employees Stayed =
+CALCULATE(
+    COUNTROWS('hr_attrition employee_attrition'),
+    'hr_attrition employee_attrition'[Attrition] = "No"
+)
+
+
+Average Age =
+AVERAGE('hr_attrition employee_attrition'[Age])
+
+
+Attrition Rate =
+DIVIDE(
+    [Employee Left],
+    [Total Employee],
+    0
+)
+
+
+Average Salary =
+AVERAGE('hr_attrition employee_attrition'[MonthlyIncome])
